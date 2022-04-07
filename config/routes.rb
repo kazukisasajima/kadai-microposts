@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   
   get 'signup', to: 'users#new'
   
-  # Lesson20 Chapter 10.3
   resources :users, only: [:index, :show, :create] do
     member do
       get :followings
@@ -19,7 +18,14 @@ Rails.application.routes.draw do
     end
   end
   
+  resources :users, only: [:index, :show, :create] do
+    member do
+      get :likes
+    end
+  end
+  
 
   resources :microposts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
+  resources :favorites, only: [:create, :destroy]
 end
